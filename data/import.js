@@ -4,8 +4,9 @@ const path = require("path");
 
 (async () => {
   try {
-    const file = fs.readFileSync(__dirname + "/locations.json");
-    const locations = JSON.parse(file);
+    const locations = JSON.parse(
+      fs.readFileSync(__dirname + "/locations.json")
+    );
     for (const location of locations) {
       const id = location.Site.SiteId;
       const latitude = location.Site.Latitude;
