@@ -1,0 +1,12 @@
+{
+  "name": "sprint.continuous_delivery",
+  "scripts": {},
+  "env": {},
+  "formation": {},
+  "addons": ["heroku-postgresql"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
