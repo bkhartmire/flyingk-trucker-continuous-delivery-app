@@ -1,0 +1,16 @@
+{
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "cc9-project.c-d-react-team-1",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
