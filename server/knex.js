@@ -18,6 +18,10 @@ const db = knex({
     l.port
   }/${l.database}`,
   searchPath: "public",
+  migration: {
+    tablename: "knex_migrations",
+    directory: "../migrations",
+  },
 });
 
 module.exports = db;
