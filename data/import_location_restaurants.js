@@ -1,7 +1,5 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
-const path = require("path");
-let gasTypes = new Set();
 
 (async () => {
   try {
@@ -13,7 +11,7 @@ let gasTypes = new Set();
         for (const concept of location.Site.Concepts) {
           const location_id = location.Site.SiteId;
           const restaurant_id = concept.Concept.Id;
-          //console.log(location_id, restaurant_id);
+
           const result = await db("location_restaurants").insert({
             location_id,
             restaurant_id,
