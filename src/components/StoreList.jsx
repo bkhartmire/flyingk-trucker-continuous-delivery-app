@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import StoreItem from "./StoreItem";
 
 export default class StoreList extends Component {
-  componentDidUpdate() {
-    debugger;
-  }
+  // componentDidUpdate() {
+  //   debugger;
+  // }
   render() {
     return (
-      <React.Fragment>
-        <h1>HELLO</h1>
-      </React.Fragment>
+      <div id="storelist">
+        <h1>Store List</h1>
+        {this.props.locations.map((location) => {
+          return <StoreItem name={location.name} />;
+        })}
+      </div>
     );
   }
 }
