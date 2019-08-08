@@ -10,7 +10,12 @@ export default class StoreList extends Component {
       <div id="storelist">
         <h1>Store List</h1>
         {this.props.locations.map((location) => {
-          return <StoreItem name={location.name} />;
+          return (
+            <StoreItem
+              name={location.preferred_name}
+              key={location.site_name}
+            />
+          );
         })}
       </div>
     );
