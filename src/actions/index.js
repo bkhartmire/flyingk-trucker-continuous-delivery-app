@@ -1,9 +1,9 @@
-import { getMarkers } from "../utils";
+import { fetchLocations } from "../utils";
 
 export function getLocations() {
   return function(dispatch) {
     return (async () => {
-      const locations = await getMarkers();
+      const locations = await fetchLocations();
       dispatch(setLocations(locations));
     })();
   };
