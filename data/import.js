@@ -12,12 +12,14 @@ const path = require("path");
       const latitude = location.Site.Latitude;
       const longitude = location.Site.Longitude;
       const name = location.Site.SiteName;
+      const type = location.FacilitySubTypeId;
 
       const result = await db("locations").insert({
         id,
         latitude,
         longitude,
         name,
+        type,
       });
       console.log(result);
     }
