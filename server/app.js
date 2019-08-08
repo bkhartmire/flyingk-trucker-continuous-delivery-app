@@ -25,9 +25,20 @@ app.get("/api/locations", async (req, res) => {
     res.sendStatus(500);
   }
 });
-
+// TODO finish endpoint after seeding completed
 app.get("/api/locations/:id", async (req, res) => {
   try {
+    let id = 368;
+    const locationData = await db
+      .select()
+      .from("locations")
+      .join(
+        "location_gas_types",
+        "locations.id",
+        "location_gas_types.location_id"
+      );
+    // .whereRaw('location.id = ?', [id]);
+    res.json(locationData);
   } catch (err) {
     console.error("Error getting location information!", err);
     res.sendStatus(500);
