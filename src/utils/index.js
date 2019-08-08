@@ -7,7 +7,7 @@ export async function getMarkers() {
       lat: l.latitude,
       lng: l.longitude,
     },
-    key: l.name,
+    name: l.name,
     defaultAnimation: 2,
   }));
   return markers;
