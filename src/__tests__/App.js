@@ -1,36 +1,17 @@
-// import React from "react";
-// import { mount } from "enzyme";
-// import sinon from "sinon";
+import React from "react";
 
-// import App from "./App.jsx";
-// import { getMarkers } from "../utils/";
-// jest.mock("../utils/");
+import App from "../App.jsx";
+
 import Adapter from "enzyme-adapter-react-16";
-import { configure } from "enzyme";
+import { configure, shallow } from "enzyme";
 configure({
   adapter: new Adapter(),
 });
 
 describe("the App component", () => {
-  it("sums numbers", () => {
-    expect(1 + 2).toEqual(3);
-    expect(2 + 2).toEqual(4);
+  it("renders the app title", () => {
+    const wrapper = shallow(<App />);
+    const title = <h2>FlyingK Truck Stops</h2>;
+    expect(wrapper.contains(title)).toEqual(true);
   });
-  // let componentDidMountSpy;
-  // let getSingleObjectSpy;
-  // let listObjectsSpy;
-  // let wrapper;
-
-  // beforeEach(() => {
-  //   wrapper = mount(<App />);
-  // });
-
-  // it("renders the App component to the DOM", () => {
-  //   expect(
-  //     wrapper
-  //       .find(".app")
-  //       .exists()
-  //       .toEqual(true)
-  //   );
-  // });
 });
