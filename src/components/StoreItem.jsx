@@ -4,7 +4,7 @@ export default class StoreItem extends Component {
   render() {
     return (
       <div className="storeitem">
-        <h1>{this.props.name}</h1>
+        <h4>{this.props.name}</h4>
       </div>
     );
   }
