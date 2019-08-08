@@ -4,6 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "author": "Felix Kirmse for Code Chrysalis",
+  "proxy": "http://localhost:9000",
   "dependencies": {
     "axios": "^0.18.0",
     "dotenv": "^8.0.0",
