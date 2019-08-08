@@ -1,11 +1,13 @@
 import React from "react";
-import FilterByLocations from "./FilterByLocations";
-import FilterByTypes from "./FilterByTypes";
+import { FilterByLocations } from "./FilterByLocations";
+import { FilterByTypes } from "./FilterByTypes";
+import { FilterByAmenities } from "./FilterByAmenities";
 
 export const FilterBox = () => (
   <div>
-    <h2>Filter by criteria:</h2>
+    <h3>Filter by criteria:</h3>
     <FilterByLocations />
     <FilterByTypes />
+    <FilterByAmenities />
   </div>
 );
