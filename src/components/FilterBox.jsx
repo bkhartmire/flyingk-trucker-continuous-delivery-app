@@ -4,7 +4,7 @@ const distances = [1, 5, 10];
 
 export const FilterBox = (props) => (
   <div>
-    <h3>Filter by distance:</h3>
+    <h2>Filter by distance:</h2>
     {distances.map((distance) => {
       return <FilterItem distance={distance} />;
     })}
