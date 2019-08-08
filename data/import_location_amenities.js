@@ -7,14 +7,16 @@ const db = require("../server/knex.js");
       fs.readFileSync(__dirname + "/locations.json")
     );
     for (const location of locations) {
-      if (location.Site.Concepts !== undefined) {
-        for (const concept of location.Site.Concepts) {
+      if (location.CustomFields !== undefined) {
+        for (const amenity of location.CustomFields) {
+          const name = amenity.CustomField.DisplayName;
           const location_id = location.Site.SiteId;
-          const restaurant_id = concept.Concept.Id;
+          const amenity_id = amenity.CustomField.Id;
 
-          const result = await db("location_restaurants").insert({
+          const result = await db("location_amenities").insert({
+            name,
             location_id,
-            restaurant_id,
+            amenity_id,
           });
           console.log(result);
         }
