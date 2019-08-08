@@ -50,5 +50,6 @@
   "engines": {
     "node": ">=9.10.0",
     "yarn": ">=1.6.0"
-  }
+  },
+  "proxy": "http://localhost:9000"
 }
