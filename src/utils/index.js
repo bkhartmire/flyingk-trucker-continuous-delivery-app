@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function getMarkers() {
+export async function fetchLocations() {
   const { data: locations } = await axios.get("/api/locations"); // ES6 destructuring & aliasing
   const markers = locations.map((l) => ({
     position: {
