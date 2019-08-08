@@ -1,6 +1,5 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
-const path = require("path");
 let restaurantObj = {};
 
 (async () => {
