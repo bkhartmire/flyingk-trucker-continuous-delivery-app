@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import Map from "./containers/Map";
+import StoreList from "./containers/StoreList";
+import { FilterBox } from "./components/FilterBox";
 
 class App extends Component {
   render() {
@@ -10,12 +12,16 @@ class App extends Component {
       <div className="App" style={{ height: "100%" }}>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>FlyingK Truck Stops</h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <Map id="map" />
+        <div id="search">
+          <FilterBox />
+          <StoreList />
+        </div>
       </div>
     );
   }
