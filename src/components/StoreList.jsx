@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import StoreItem from "./StoreItem";
 
 export default class StoreList extends Component {
-  // componentDidUpdate() {
-  //   debugger;
-  // }
   render() {
     return (
       <div id="storelist">

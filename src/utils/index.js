@@ -17,10 +17,10 @@ export async function fetchLocations() {
       siteName: l.site_name,
       defaultAnimation: 2,
       type: storeType,
-      gasTypes,
-      amenities,
-      restaurants,
+      gasTypes: gasTypes.data,
+      amenities: amenities.data,
+      restaurants: restaurants.data,
     };
   });
-  return markers;
+  return Promise.all(markers);
 }
