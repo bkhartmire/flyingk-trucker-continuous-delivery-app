@@ -25,20 +25,58 @@ app.get("/api/locations", async (req, res) => {
     res.sendStatus(500);
   }
 });
-// TODO finish endpoint after seeding completed
-app.get("/api/locations/:id", async (req, res) => {
+
+app.get("/api/locations/:id/gastypes", async (req, res) => {
   try {
-    let id = 368;
-    const locationData = await db
-      .select()
-      .from("locations")
-      .join(
+    const gasTypes = await db
+      .select("gas_types.name")
+      .from("gas_types")
+      .leftJoin(
         "location_gas_types",
-        "locations.id",
-        "location_gas_types.location_id"
-      );
-    // .whereRaw('location.id = ?', [id]);
-    res.json(locationData);
+        "location_gas_types.gas_type_id",
+        "gas_types.id"
+      )
+      .leftJoin("locations", "location_gas_types.location_id", "locations.id")
+      .where("locations.id", "=", ~~req.params.id);
+    res.json(gasTypes);
+  } catch (err) {
+    console.error("Error getting location information!", err);
+    res.sendStatus(500);
+  }
+});
+
+app.get("/api/locations/:id/amenities", async (req, res) => {
+  try {
+    const amenities = await db
+      .select("amenities.name")
+      .from("amenities")
+      .leftJoin(
+        "location_amenities",
+        "location_amenities.amenity_id",
+        "amenities.id"
+      )
+      .leftJoin("locations", "location_amenities.location_id", "locations.id")
+      .where("locations.id", "=", ~~req.params.id);
+    res.json(amenities);
+  } catch (err) {
+    console.error("Error getting location information!", err);
+    res.sendStatus(500);
+  }
+});
+
+app.get("/api/locations/:id/restaurants", async (req, res) => {
+  try {
+    const restaurants = await db
+      .select("restaurants.name")
+      .from("restaurants")
+      .leftJoin(
+        "location_restaurants",
+        "location_restaurants.restaurant_id",
+        "restaurants.id"
+      )
+      .leftJoin("locations", "location_restaurants.location_id", "locations.id")
+      .where("locations.id", "=", ~~req.params.id);
+    res.json(restaurants);
   } catch (err) {
     console.error("Error getting location information!", err);
     res.sendStatus(500);
@@ -55,25 +93,25 @@ app.get("/api/amenities", async (req, res) => {
   }
 });
 
-app.get("/api/restaurants", async (req, res) => {
-  try {
-    const restaurants = await db.select().table("restaurants");
-    res.json(restaurants);
-  } catch (err) {
-    console.error("Error loading restaurants!", err);
-    res.sendStatus(500);
-  }
-});
+// app.get("/api/restaurants", async (req, res) => {
+//   try {
+//     const restaurants = await db.select().table("restaurants");
+//     res.json(restaurants);
+//   } catch (err) {
+//     console.error("Error loading restaurants!", err);
+//     res.sendStatus(500);
+//   }
+// });
 
-app.get("/api/gastypes", async (req, res) => {
-  try {
-    const gasTypes = await db.select().table("gas_types");
-    res.json(gasTypes);
-  } catch (err) {
-    console.error("Error loading gas types!", err);
-    res.sendStatus(500);
-  }
-});
+// app.get("/api/gastypes", async (req, res) => {
+//   try {
+//     const gasTypes = await db.select().table("gas_types");
+//     res.json(gasTypes);
+//   } catch (err) {
+//     console.error("Error loading gas types!", err);
+//     res.sendStatus(500);
+//   }
+// });
 
 // Always return the main index.html, so react-router render the route in the client
 app.get("*", (req, res) => {
