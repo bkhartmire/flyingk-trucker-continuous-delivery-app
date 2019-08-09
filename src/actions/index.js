@@ -15,3 +15,7 @@ function setLocations(locations) {
     locations,
   };
 }
+
+export function setStatesCities() {
+  return { type: "SET_STATES_CITIES" };
+}
