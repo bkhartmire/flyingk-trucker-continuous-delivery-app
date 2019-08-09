@@ -8,13 +8,8 @@ export default class StoreList extends Component {
       <React.Fragment>
         {this.props.locations.length > 0 && (
           <div id="storelist">
-            {this.props.locations.map((location) => {
-              return (
-                <StoreItem
-                  name={location.preferredName}
-                  key={location.siteName}
-                />
-              );
+            {this.props.locations.map((location, index) => {
+              return <StoreItem key={index} location={location} />;
             })}
           </div>
         )}
