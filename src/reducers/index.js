@@ -2,25 +2,36 @@ const defaultState = {
   locations: [],
   gas_types: [],
   filteredLocations: [],
+  loading: true,
 };
 
 const reducer = (state = defaultState, action) => {
-  let filteredLocations;
+  let newFilteredLocations;
   switch (action.type) {
     case "SET_LOCATIONS":
       return {
         ...state,
         locations: action.locations,
-        filteredLocations: action.locations,
+        loading: false,
       };
-    case "FILTER_TYPE":
-      filteredLocations = state.filteredLocations.filter(
+    case "SELECT_TYPE":
+      newFilteredLocations = state.locations.filter(
         (location) => location.type === action.payload
       );
-      debugger;
       return {
         ...state,
-        filteredLocations,
+        filteredLocations: [
+          ...state.filteredLocations,
+          ...newFilteredLocations,
+        ],
+      };
+    case "UNSELECT_TYPE":
+      newFilteredLocations = state.filteredLocations.filter(
+        (location) => location.type !== action.payload
+      );
+      return {
+        ...state,
+        filteredLocations: newFilteredLocations,
       };
     default:
       return state;

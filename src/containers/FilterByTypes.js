@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import FilterByTypes from "../components/FilterByTypes";
-import { selectType } from "../actions/index";
+import { filterType } from "../actions/index";
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectType: (type) => {
-      const res = selectType(type);
+    filterType: (e, type) => {
+      const res = filterType(e, type);
       dispatch(res);
     },
   };
