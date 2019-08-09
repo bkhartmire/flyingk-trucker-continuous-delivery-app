@@ -38,7 +38,21 @@ const reducer = (state = defaultState, action) => {
         filteredLocations: newFilteredLocations,
       };
     case "SELECT_STATE":
-      return state;
+      if (
+        state.filteredLocations.some(
+          (location) => location.state === action.payload
+        )
+      ) {
+        newFilteredLocations = state.filteredLocations.filter(
+          (location) => location.state === action.payload
+        );
+      } else {
+        newFilteredLocations = state.locations.filter(
+          (location) => location.state === action.payload
+        );
+      }
+
+      return { ...state, filteredLocations: newFilteredLocations };
     case "SELECT_CITY":
       return state;
     case "SELECT_HIGHWAY":
