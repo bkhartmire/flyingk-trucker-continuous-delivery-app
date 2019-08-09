@@ -57,16 +57,16 @@ function selectState(state) {
   };
 }
 
-export function filterCity(e) {
-  const city = e.target.value;
+export function filterCity(city, state) {
   return function(dispatch) {
-    dispatch(selectCity(city));
+    dispatch(selectCity(city, state));
   };
 }
-function selectCity(city) {
+function selectCity(city, state) {
   return {
     type: "SELECT_CITY",
-    payload: city,
+    city,
+    state,
   };
 }
 

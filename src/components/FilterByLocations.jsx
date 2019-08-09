@@ -9,8 +9,9 @@ export default class FilterByLocations extends Component {
     };
   }
 
-  updateCities(value) {
-    this.setState({ value });
+  updateCities(e) {
+    this.setState({ value: e.target.value });
+    this.props.filterState(e);
   }
 
   render() {
@@ -18,9 +19,7 @@ export default class FilterByLocations extends Component {
       <div>
         <span>Locations: </span>
 
-        <select onChange={(event) => this.updateCities(event.target.value)}>
-
-
+        <select onChange={(event) => this.updateCities(event)}>
           <option value="">--State--</option>
           {Object.keys(this.props.states).map((state, index) => {
             return (
@@ -31,9 +30,11 @@ export default class FilterByLocations extends Component {
           })}
         </select>
 
-        <select onChange={(e) => {
-            this.props.filterCity(e);
-          }}>
+        <select
+          onChange={(e) => {
+            this.props.filterCity(e.target.value, this.state.value);
+          }}
+        >
           {this.state.value ? (
             [...this.props.states[this.state.value]].map((city, index) => {
               return (
