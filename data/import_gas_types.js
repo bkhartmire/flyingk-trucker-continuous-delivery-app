@@ -20,6 +20,7 @@ let gasTypes = new Set();
       });
       console.log(result);
     }
+    process.exit();
   } catch (err) {
     console.error("Error inserting records", err);
   }

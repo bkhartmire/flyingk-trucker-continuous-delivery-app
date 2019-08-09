@@ -32,6 +32,7 @@ const db = require("../server/knex.js");
       });
       console.log(result);
     }
+    process.exit();
   } catch (err) {
     console.error("Error inserting records", err);
   }
