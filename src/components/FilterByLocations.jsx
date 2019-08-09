@@ -20,7 +20,6 @@ export default class FilterByLocations extends Component {
         <span>Locations: </span>
 
         <select onChange={(e) => this.updateCities(e)}>
-
           <option value="">--State--</option>
           {Object.keys(this.props.states).map((state, index) => {
             return (
@@ -33,14 +32,11 @@ export default class FilterByLocations extends Component {
 
         <select
           onChange={(e) => {
-
             this.props.filterCity(e);
           }}
         >
           <option value="">--City--</option>
           {this.state.value &&
-
-
             [...this.props.states[this.state.value]].map((city, index) => {
               return (
                 <option key={index + "a"} value={city}>
