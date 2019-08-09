@@ -1,0 +1,26 @@
+h1 {
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+#storelist {
+  text-align: left;
+  width: 50%;
+  height: auto;
+  margin: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 228, 223);
+  border-radius: 6px;
+  box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.5);
+}
+
+#title-store-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: rgb(49, 148, 9);
+  margin-top: 0px;
+  margin-bottom: 30px;
+}
