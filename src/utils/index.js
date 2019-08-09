@@ -22,7 +22,27 @@ export async function fetchLocations() {
       gasTypes: gasTypes.data,
       amenities: amenities.data,
       restaurants: restaurants.data,
+      state: l.state,
+      city: l.city,
+      highway: l.highway,
     };
   });
+
   return Promise.all(markers);
+}
+
+export function getStatesCities(locations) {
+  const result = {};
+  const arr = [];
+  for (const location of locations) {
+    arr.push(location.state);
+  }
+  const uniqueStates = new Set(arr);
+  for (let state of uniqueStates) {
+    result[state] = new Set();
+  }
+  for (const location of locations) {
+    result[location.state].add(location.city);
+  }
+  return result;
 }
