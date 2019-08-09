@@ -13,10 +13,12 @@ const reducer = (state = defaultState, action) => {
   let newFilteredLocations;
   switch (action.type) {
     case "SET_LOCATIONS":
+      const states = getStatesCities(action.locations);
       return {
         ...state,
         locations: action.locations,
         loading: false,
+        states,
       };
     case "SELECT_TYPE":
       newFilteredLocations = state.locations.filter(
@@ -37,10 +39,6 @@ const reducer = (state = defaultState, action) => {
         ...state,
         filteredLocations: newFilteredLocations,
       };
-    case "SET_STATES_CITIES":
-      const copyLocations = [...state.locations];
-      const stateObj = getStatesCities(copyLocations);
-      return { ...state, states: stateObj };
     default:
       return state;
   }

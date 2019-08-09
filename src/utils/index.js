@@ -34,15 +34,15 @@ export async function fetchLocations() {
 export function getStatesCities(locations) {
   const result = {};
   const arr = [];
-  for (const location in locations) {
+  for (const location of locations) {
     arr.push(location.state);
   }
   const uniqueStates = new Set(arr);
   for (let state of uniqueStates) {
     result[state] = new Set();
   }
-  for (const location in locations) {
-    result.location.state.add(location.city);
+  for (const location of locations) {
+    result[location.state].add(location.city);
   }
   return result;
 }
