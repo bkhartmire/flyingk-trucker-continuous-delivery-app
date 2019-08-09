@@ -1,10 +1,11 @@
-import { fetchLocations } from "../utils";
+import { fetchLocations, getStatesCities } from "../utils";
 
 export function getLocations() {
   return function(dispatch) {
     return (async () => {
       const locations = await fetchLocations();
       dispatch(setLocations(locations));
+      getStatesCities(locations);
     })();
   };
 }
@@ -14,6 +15,10 @@ function setLocations(locations) {
     type: "SET_LOCATIONS",
     locations,
   };
+}
+
+export function setStatesCities() {
+  return { type: "SET_STATES_CITIES" };
 }
 
 export function filterType(e, type) {
@@ -35,5 +40,46 @@ function unselectType(type) {
   return {
     type: "UNSELECT_TYPE",
     payload: type,
+  };
+}
+
+export function filterState(e) {
+  const state = e.target.value;
+  return function(dispatch) {
+    dispatch(selectState(state));
+  };
+}
+
+function selectState(state) {
+  return {
+    type: "SELECT_STATE",
+    payload: state,
+  };
+}
+
+export function filterCity(e) {
+  const city = e.target.value;
+  return function(dispatch) {
+    dispatch(selectCity(city));
+  };
+}
+function selectCity(city) {
+  return {
+    type: "SELECT_CITY",
+    payload: city,
+  };
+}
+
+export function filterHighway(e) {
+  const highway = e.target.value;
+  return function(dispatch) {
+    dispatch(selectHighway(highway));
+  };
+}
+
+function selectHighway(highway) {
+  return {
+    type: "SELECT_HIGHWAY",
+    payload: highway,
   };
 }
