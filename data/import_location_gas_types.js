@@ -1,7 +1,5 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
-const path = require("path");
-let gasTypes = new Set();
 
 (async () => {
   try {
@@ -41,6 +39,7 @@ let gasTypes = new Set();
         }
       }
     }
+    process.exit();
   } catch (err) {
     console.error("Error inserting records", err);
   }

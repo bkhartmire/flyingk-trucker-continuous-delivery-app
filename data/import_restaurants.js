@@ -1,6 +1,5 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
-const path = require("path");
 let restaurantObj = {};
 
 (async () => {
@@ -26,6 +25,7 @@ let restaurantObj = {};
       });
       console.log(result);
     }
+    process.exit();
   } catch (err) {
     console.error("Error inserting records", err);
   }
