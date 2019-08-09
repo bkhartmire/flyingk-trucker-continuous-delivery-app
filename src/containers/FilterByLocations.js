@@ -1,5 +1,6 @@
 import FilterByLocations from "../components/FilterByLocations";
 import { connect } from "react-redux";
+import { filterState, filterCity, filterHighway } from "../actions/index";
 
 const mapStateToProps = (state) => {
   return {
@@ -9,7 +10,17 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    filterState: (state) => {
+      dispatch(filterState(state));
+    },
+    filterCity: (city) => {
+      dispatch(filterCity(city));
+    },
+    filterHighway: (highway) => {
+      dispatch(filterHighway(highway));
+    },
+  };
 };
 
 export default connect(
