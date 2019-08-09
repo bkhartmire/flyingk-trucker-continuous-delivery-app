@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FilterByLocations from "./FilterByLocations";
+import FilterByLocations from "../containers/FilterByLocations";
 import FilterByTypes from "../containers/FilterByTypes";
 
 export default class FilterBox extends Component {
@@ -10,7 +10,7 @@ export default class FilterBox extends Component {
           <h1>Loading...</h1>
         ) : (
           <div>
-            <h2>Filter by criteria:</h2>
+            <h3>Filter by criteria:</h3>
             <FilterByLocations />
             <FilterByTypes />
           </div>
