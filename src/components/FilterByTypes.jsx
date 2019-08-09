@@ -9,13 +9,13 @@ export default class FilterByTypes extends Component {
         <input
           type="checkbox"
           name="travel_stop"
-          onClick={() => this.props.selectType("travel stop")}
+          onClick={(e) => this.props.filterType(e, "travel stop")}
         />
         <label htmlFor="country_store">Country Store</label>
         <input
           type="checkbox"
           name="country_store"
-          onClick={() => this.props.selectType("country store")}
+          onClick={(e) => this.props.filterType(e, "country store")}
         />
       </div>
     );

@@ -16,15 +16,24 @@ function setLocations(locations) {
   };
 }
 
-export function selectType(type) {
+export function filterType(e, type) {
   return function(dispatch) {
-    dispatch(filterType(type));
+    e.target.checked
+      ? dispatch(selectType(type))
+      : dispatch(unselectType(type));
   };
 }
 
-function filterType(type) {
+function selectType(type) {
   return {
-    type: "FILTER_TYPE",
+    type: "SELECT_TYPE",
+    payload: type,
+  };
+}
+
+function unselectType(type) {
+  return {
+    type: "UNSELECT_TYPE",
     payload: type,
   };
 }
