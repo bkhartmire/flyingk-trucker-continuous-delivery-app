@@ -6,11 +6,15 @@ export default class StoreList extends Component {
   render() {
     return (
       <div id="storelist">
-        {this.props.locations.map((location) => {
-          return (
-            <StoreItem name={location.preferredName} key={location.siteName} />
-          );
-        })}
+        {this.props.locations.length > 0 &&
+          this.props.locations.map((location) => {
+            return (
+              <StoreItem
+                name={location.preferredName}
+                key={location.siteName}
+              />
+            );
+          })}
       </div>
     );
   }
