@@ -6,7 +6,8 @@ export default class StoreItem extends Component {
     return (
       <div className="storeitem">
         <div className="storebox">
-          <h3>{this.props.name}</h3>
+          <span>{this.props.location.preferredName} - </span>
+          <span>{this.props.location.site_name}</span>
         </div>
       </div>
     );
