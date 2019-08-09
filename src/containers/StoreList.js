@@ -3,7 +3,7 @@ import StoreList from "../components/StoreList";
 
 const mapStateToProps = (state) => {
   return {
-    locations: state.locations,
+    locations: state.filteredLocations,
   };
 };
 
