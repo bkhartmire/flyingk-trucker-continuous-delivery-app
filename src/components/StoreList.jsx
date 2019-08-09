@@ -2,21 +2,22 @@ import React, { Component } from "react";
 import StoreItem from "./StoreItem";
 
 export default class StoreList extends Component {
-  // componentDidUpdate() {
-  //   debugger;
-  // }
   render() {
     return (
       <div id="storelist">
         <h1>Store List</h1>
-        {this.props.locations.map((location) => {
-          return (
-            <StoreItem
-              name={location.preferred_name}
-              key={location.site_name}
-            />
-          );
-        })}
+        {this.props.locations.length > 0 ? (
+          this.props.locations.map((location) => {
+            return (
+              <StoreItem
+                name={location.preferredName}
+                key={location.siteName}
+              />
+            );
+          })
+        ) : (
+          <h5>Loading...</h5>
+        )}
       </div>
     );
   }
