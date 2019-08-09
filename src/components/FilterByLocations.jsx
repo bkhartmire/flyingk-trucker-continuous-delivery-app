@@ -32,7 +32,7 @@ export default class FilterByLocations extends Component {
 
         <select
           onChange={(e) => {
-            this.props.filterCity(e);
+            this.props.filterCity(e.target.value, this.state.value);
           }}
         >
           <option value="">--City--</option>
@@ -45,8 +45,19 @@ export default class FilterByLocations extends Component {
               );
             })}
         </select>
-        <select onChange={() => {}}>
+        <select
+          onChange={(e) => {
+            this.props.filterHighway(e.target.value);
+          }}
+        >
           <option value="">--Highway--</option>
+          {[...this.props.highways].map((state, index) => {
+            return (
+              <option key={index} value={state}>
+                {state}
+              </option>
+            );
+          })}
         </select>
       </div>
     );
