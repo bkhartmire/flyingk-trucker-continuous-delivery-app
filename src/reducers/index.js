@@ -55,7 +55,12 @@ const reducer = (state = defaultState, action) => {
 
       return { ...state, filteredLocations: newFilteredLocations };
     case "SELECT_CITY":
-      return state;
+      newFilteredLocations = state.locations.filter(
+        (location) =>
+          location.state === action.state &&
+          location.preferredName === action.city
+      );
+      return { ...state, filteredLocations: newFilteredLocations };
     case "SELECT_HIGHWAY":
       return state;
     default:
