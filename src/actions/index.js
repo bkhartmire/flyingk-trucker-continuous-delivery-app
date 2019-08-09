@@ -70,8 +70,7 @@ function selectCity(city, state) {
   };
 }
 
-export function filterHighway(e) {
-  const highway = e.target.value;
+export function filterHighway(highway) {
   return function(dispatch) {
     dispatch(selectHighway(highway));
   };

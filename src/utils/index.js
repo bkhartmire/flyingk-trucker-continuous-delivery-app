@@ -51,7 +51,9 @@ export function getStatesCities(locations) {
 export function getHighways(locations) {
   const arr = [];
   for (const location of locations) {
-    arr.push(location.highway);
+    if (typeof location.highway === "string" && location.highway.length > 0) {
+      arr.push(location.highway);
+    }
   }
   const uniqueHighways = new Set(arr);
 
