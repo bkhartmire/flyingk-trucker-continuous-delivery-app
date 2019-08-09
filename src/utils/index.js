@@ -46,3 +46,13 @@ export function getStatesCities(locations) {
   }
   return result;
 }
+
+export function getHighways(locations) {
+  const arr = [];
+  for (const location of locations) {
+    arr.push(location.highway);
+  }
+  const uniqueHighways = new Set(arr);
+
+  return uniqueHighways;
+}
