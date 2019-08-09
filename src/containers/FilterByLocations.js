@@ -1,11 +1,29 @@
-import { connect } from "react-redux";
 import FilterByLocations from "../components/FilterByLocations";
+import { connect } from "react-redux";
+import { filterState, filterCity, filterHighway } from "../actions/index";
 
 const mapStateToProps = (state) => {
   return {
     states: state.states,
-    loading: state.loading,
+    highways: state.highways,
   };
 };
 
-export default connect(mapStateToProps)(FilterByLocations);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    filterState: (state) => {
+      dispatch(filterState(state));
+    },
+    filterCity: (city) => {
+      dispatch(filterCity(city));
+    },
+    filterHighway: (highway) => {
+      dispatch(filterHighway(highway));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterByLocations);

@@ -2,9 +2,8 @@ import { getStatesCities } from "../utils";
 
 const defaultState = {
   locations: [],
-  gas_types: [],
   states: {},
-  highway: [],
+  highways: [],
   filteredLocations: [],
   loading: true,
 };
@@ -13,12 +12,11 @@ const reducer = (state = defaultState, action) => {
   let newFilteredLocations;
   switch (action.type) {
     case "SET_LOCATIONS":
-      const states = getStatesCities(action.locations);
       return {
         ...state,
         locations: action.locations,
         loading: false,
-        states,
+        states: getStatesCities(action.locations),
       };
     case "SELECT_TYPE":
       newFilteredLocations = state.locations.filter(
@@ -39,6 +37,12 @@ const reducer = (state = defaultState, action) => {
         ...state,
         filteredLocations: newFilteredLocations,
       };
+    case "SELECT_STATE":
+      return state;
+    case "SELECT_CITY":
+      return state;
+    case "SELECT_HIGHWAY":
+      return state;
     default:
       return state;
   }
