@@ -7,7 +7,9 @@ export async function fetchLocations() {
     const gasTypes = await axios.get(`/api/locations/${l.id}/gastypes`);
     const amenities = await axios.get(`/api/locations/${l.id}/amenities`);
     const restaurants = await axios.get(`/api/locations/${l.id}/restaurants`);
-    l.type === 3 ? (storeType = "travel stop") : (storeType = "country store");
+    l.type === "3"
+      ? (storeType = "travel stop")
+      : (storeType = "country store");
     return {
       position: {
         lat: l.latitude,
