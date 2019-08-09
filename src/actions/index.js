@@ -1,10 +1,11 @@
-import { fetchLocations } from "../utils";
+import { fetchLocations, getStatesCities } from "../utils";
 
 export function getLocations() {
   return function(dispatch) {
     return (async () => {
       const locations = await fetchLocations();
       dispatch(setLocations(locations));
+      getStatesCities(locations);
     })();
   };
 }
