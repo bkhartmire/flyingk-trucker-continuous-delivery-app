@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Map from "./containers/Map";
 import StoreList from "./containers/StoreList";
-import { FilterBox } from "./components/FilterBox";
+import FilterBox from "./containers/FilterBox";
 
 class App extends Component {
   render() {
