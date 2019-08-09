@@ -29,7 +29,11 @@ app.get("/api/locations", async (req, res) => {
 app.get("/api/locations/:id/gastypes", async (req, res) => {
   try {
     const gasTypes = await db
-      .select("gas_types.name")
+      .select(
+        "gas_types.name",
+        "location_gas_types.cash_price",
+        "location_gas_types.credit_price"
+      )
       .from("gas_types")
       .leftJoin(
         "location_gas_types",
@@ -93,15 +97,15 @@ app.get("/api/amenities", async (req, res) => {
   }
 });
 
-app.get("/api/haha", async (req, res) => {
-  try {
-    const locations = await db.raw("select site from data;");
-    res.json(locations);
-  } catch (err) {
-    console.error("Error loading locations!", err);
-    res.sendStatus(500);
-  }
-});
+// app.get("/api/haha", async (req, res) => {
+//   try {
+//     const locations = await db.raw("select site from data;");
+//     res.json(locations);
+//   } catch (err) {
+//     console.error("Error loading locations!", err);
+//     res.sendStatus(500);
+//   }
+// });
 // app.get("/api/restaurants", async (req, res) => {
 //   try {
 //     const restaurants = await db.select().table("restaurants");
