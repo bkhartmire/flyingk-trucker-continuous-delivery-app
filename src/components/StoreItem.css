@@ -1,0 +1,20 @@
+h3 {
+  color: grey;
+  margin: 10px;
+}
+.storeitem {
+  margin: 30px;
+  height: 100px;
+}
+.storebox {
+  height: 100px;
+  margin: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 228, 223);
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+}
+.storebox:hover {
+  box-shadow: 3px 3px 15px rgba(49, 148, 9);
+}
