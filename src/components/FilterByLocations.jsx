@@ -5,7 +5,11 @@ export default class FilterByLocations extends Component {
     return (
       <div>
         <span>Locations: </span>
-        <select onChange={() => {}}>
+        <select
+          onChange={(e) => {
+            this.props.filterState(e);
+          }}
+        >
           <option value="">--State--</option>
           {Object.keys(this.props.states).map((state, index) => {
             return (
@@ -15,7 +19,11 @@ export default class FilterByLocations extends Component {
             );
           })}
         </select>
-        <select onChange={() => {}}>
+        <select
+          onChange={(e) => {
+            this.props.filterCity(e);
+          }}
+        >
           <option value="">--City--</option>
         </select>
         <select onChange={() => {}}>
