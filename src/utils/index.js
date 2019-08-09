@@ -25,6 +25,7 @@ export async function fetchLocations() {
       state: l.state,
       city: l.city,
       highway: l.highway,
+      exit: l.exit_number,
     };
   });
 
