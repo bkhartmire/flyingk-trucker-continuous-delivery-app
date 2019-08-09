@@ -10,7 +10,7 @@ export default class FilterBox extends Component {
           <h1>Loading...</h1>
         ) : (
           <div>
-            <h2>Filter by criteria:</h2>
+            <h3>Filter by criteria:</h3>
             <FilterByLocations />
             <FilterByTypes />
           </div>

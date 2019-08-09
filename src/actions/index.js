@@ -1,10 +1,11 @@
-import { fetchLocations } from "../utils";
+import { fetchLocations, getStatesCities } from "../utils";
 
 export function getLocations() {
   return function(dispatch) {
     return (async () => {
       const locations = await fetchLocations();
       dispatch(setLocations(locations));
+      getStatesCities(locations);
     })();
   };
 }
@@ -14,6 +15,10 @@ function setLocations(locations) {
     type: "SET_LOCATIONS",
     locations,
   };
+}
+
+export function setStatesCities() {
+  return { type: "SET_STATES_CITIES" };
 }
 
 export function filterType(e, type) {
