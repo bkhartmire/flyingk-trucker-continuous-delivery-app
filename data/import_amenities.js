@@ -1,6 +1,6 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
-let gasTypes = new Set();
+let amenObj = {};
 
 (async () => {
   try {
@@ -8,15 +8,16 @@ let gasTypes = new Set();
       fs.readFileSync(__dirname + "/locations.json")
     );
     for (const location of locations) {
-      if (location.Site.FuelPrices !== undefined) {
-        for (const fuelPrice of location.Site.FuelPrices) {
-          gasTypes.add(fuelPrice.FuelType);
+      if (location.CustomFields !== undefined) {
+        for (const amenity of location.CustomFields) {
+          amenObj[amenity.CustomField.Id] = amenity.CustomField.DisplayName;
         }
       }
     }
-    for (const key of gasTypes) {
-      const result = await db("gas_types").insert({
-        name: key,
+    for (const key in amenObj) {
+      const result = await db("amenities").insert({
+        id: key,
+        name: amenObj[key],
       });
       console.log(result);
     }
