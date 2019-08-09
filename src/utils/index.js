@@ -38,7 +38,7 @@ export function getStatesCities(locations) {
     arr.push(location.state);
   }
   const uniqueStates = new Set(arr);
-  for (let state of uniqueStates) {
+  for (const state of uniqueStates) {
     result[state] = new Set();
   }
   for (const location of locations) {
