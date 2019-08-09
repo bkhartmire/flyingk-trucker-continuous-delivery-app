@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FilterByLocations from "./FilterByLocations";
+import FilterByLocations from "../containers/FilterByLocations";
 import FilterByTypes from "../containers/FilterByTypes";
 
 export default class FilterBox extends Component {

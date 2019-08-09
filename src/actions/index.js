@@ -37,3 +37,44 @@ function unselectType(type) {
     payload: type,
   };
 }
+
+export function filterState(e) {
+  const state = e.target.value;
+  return function(dispatch) {
+    dispatch(selectState(state));
+  };
+}
+
+function selectState(state) {
+  return {
+    type: "SELECT_STATE",
+    payload: state,
+  };
+}
+
+export function filterCity(e) {
+  const city = e.target.value;
+  return function(dispatch) {
+    dispatch(selectCity(city));
+  };
+}
+function selectCity(city) {
+  return {
+    type: "SELECT_CITY",
+    payload: city,
+  };
+}
+
+export function filterHighway(e) {
+  const highway = e.target.value;
+  return function(dispatch) {
+    dispatch(selectHighway(highway));
+  };
+}
+
+function selectHighway(highway) {
+  return {
+    type: "SELECT_HIGHWAY",
+    payload: highway,
+  };
+}

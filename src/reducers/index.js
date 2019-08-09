@@ -1,6 +1,7 @@
 const defaultState = {
   locations: [],
-  gas_types: [],
+  states: {},
+  highways: [],
   filteredLocations: [],
   loading: true,
 };
@@ -33,6 +34,12 @@ const reducer = (state = defaultState, action) => {
         ...state,
         filteredLocations: newFilteredLocations,
       };
+    case "SELECT_STATE":
+      return state;
+    case "SELECT_CITY":
+      return state;
+    case "SELECT_HIGHWAY":
+      return state;
     default:
       return state;
   }
