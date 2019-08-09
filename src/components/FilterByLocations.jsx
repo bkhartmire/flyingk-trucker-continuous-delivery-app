@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-onchange */
 import React, { Component } from "react";
 
 export default class FilterByLocations extends Component {
