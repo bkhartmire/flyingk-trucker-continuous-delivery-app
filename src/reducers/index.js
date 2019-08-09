@@ -1,4 +1,4 @@
-import { getStatesCities } from "../utils";
+import { getStatesCities, getHighways } from "../utils";
 
 const defaultState = {
   locations: [],
@@ -17,6 +17,7 @@ const reducer = (state = defaultState, action) => {
         locations: action.locations,
         loading: false,
         states: getStatesCities(action.locations),
+        highways: getHighways(action.locations),
       };
     case "SELECT_TYPE":
       newFilteredLocations = state.locations.filter(
