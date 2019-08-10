@@ -1,3 +1,4 @@
+/* eslint-disable prefer-template */
 /* eslint-disable jsx-a11y/no-onchange */
 import React, { Component } from "react";
 
