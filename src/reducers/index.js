@@ -18,10 +18,8 @@ const defaultState = {
 //show no results if search and no filteredLocations come up
 //highways cities states respond to each other
 //all filters should work at the same time
-//city select option should reset to top default when city selection changes
 
-const getSelectedFilters = (state) => {
-  debugger;
+const getSelectedLocationFilters = (state) => {
   const result = {};
   for (const filter in state.locationFilters) {
     if (state.locationFilters[filter]) {
@@ -34,7 +32,7 @@ const getSelectedFilters = (state) => {
 const reducer = (state = defaultState, action) => {
   let newFilteredLocations;
   let newFilters;
-  let selectedFilters;
+  let selectedLocationFilters;
   switch (action.type) {
     case "SET_LOCATIONS":
       return {
@@ -45,18 +43,23 @@ const reducer = (state = defaultState, action) => {
         highways: getHighways(action.locations),
       };
     case "SELECT_TYPE":
-      selectedFilters = getSelectedFilters(state);
-      if (!state.madeSelection || Object.keys(selectedFilters).length === 0) {
+      selectedLocationFilters = getSelectedLocationFilters(state);
+      if (
+        state.typeFilters.length === 1 &&
+        Object.keys(selectedLocationFilters).length === 0
+      ) {
+        newFilteredLocations = [...state.locations];
+      } else if (Object.keys(selectedLocationFilters).length === 0) {
         newFilteredLocations = state.locations.filter(
           (location) => location.type === action.payload
         );
       } else if (
-        Object.keys(selectedFilters).length > 0 ||
+        Object.keys(selectedLocationFilters).length > 0 ||
         state.filteredLocations.length === 0
       ) {
         newFilteredLocations = state.locations.filter((location) => {
-          for (const key in selectedFilters) {
-            if (location[key] !== selectedFilters[key]) return false;
+          for (const key in selectedLocationFilters) {
+            if (location[key] !== selectedLocationFilters[key]) return false;
           }
           return true;
         });
@@ -75,10 +78,10 @@ const reducer = (state = defaultState, action) => {
       };
     case "UNSELECT_TYPE":
       if (state.typeFilters.length === 1) {
-        selectedFilters = getSelectedFilters(state);
+        selectedLocationFilters = getSelectedLocationFilters(state);
         newFilteredLocations = state.locations.filter((location) => {
-          for (const key in selectedFilters) {
-            if (location[key] !== selectedFilters[key]) return false;
+          for (const key in selectedLocationFilters) {
+            if (location[key] !== selectedLocationFilters[key]) return false;
           }
           return true;
         });
@@ -110,6 +113,11 @@ const reducer = (state = defaultState, action) => {
           (location) => location.state === action.payload
         );
       }
+      if (state.typeFilters.length > 0) {
+        newFilteredLocations = newFilteredLocations.filter((location) => {
+          return state.typeFilters.includes(location.type);
+        });
+      }
       return {
         ...state,
         filteredLocations: newFilteredLocations,
@@ -117,12 +125,23 @@ const reducer = (state = defaultState, action) => {
         madeSelection: true,
       };
     case "SELECT_CITY":
-      newFilteredLocations = state.locations.filter(
-        (location) =>
-          location.state === action.state &&
-          location.preferredName === action.city
-      );
-      debugger;
+      if (action.city === "default") {
+        newFilteredLocations = state.locations.filter(
+          (location) => location.state === action.state
+        );
+      } else {
+        newFilteredLocations = state.locations.filter(
+          (location) =>
+            location.state === action.state &&
+            location.preferredName === action.city
+        );
+      }
+      if (state.typeFilters.length > 0) {
+        newFilteredLocations = newFilteredLocations.filter((location) => {
+          return state.typeFilters.includes(location.type);
+        });
+      }
+
       return {
         ...state,
         filteredLocations: newFilteredLocations,
