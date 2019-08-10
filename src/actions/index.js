@@ -56,16 +56,15 @@ function selectState(state) {
   };
 }
 
-export function filterCity(city, state) {
+export function filterCity(city) {
   return function(dispatch) {
-    dispatch(selectCity(city, state));
+    dispatch(selectCity(city));
   };
 }
-function selectCity(city, state) {
+function selectCity(city) {
   return {
     type: "SELECT_CITY",
     city,
-    state,
   };
 }
 

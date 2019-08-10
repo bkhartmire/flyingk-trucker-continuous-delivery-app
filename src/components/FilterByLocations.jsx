@@ -35,10 +35,7 @@ export default class FilterByLocations extends Component {
       <div>
         <span>Locations: </span>
 
-        <select
-          id="city_select"
-          onChange={(e) => this.props.filterState(e.target.value)}
-        >
+        <select onChange={(e) => this.props.filterState(e.target.value)}>
           <option value="" selected>
             --State--
           </option>
@@ -54,12 +51,7 @@ export default class FilterByLocations extends Component {
 
         <select
           value={cityOptionValue}
-          onChange={(e) =>
-            this.props.filterCity(
-              e.target.value,
-              this.props.selectedFilters.state
-            )
-          }
+          onChange={(e) => this.props.filterCity(e.target.value)}
         >
           <option value="default">--City--</option>
           {cityOptions}

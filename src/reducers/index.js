@@ -134,12 +134,19 @@ const reducer = (state = defaultState, action) => {
           (location) => location.state === action.state
         );
       } else {
-        //can pass in state or highway
-        newFilteredLocations = state.locations.filter(
-          (location) =>
-            location.state === action.state &&
-            location.preferredName === action.city
-        );
+        if (state.locationFilters.state) {
+          newFilteredLocations = state.locations.filter(
+            (location) =>
+              location.state === state.locationFilters.state &&
+              location.preferredName === action.city
+          );
+        } else {
+          newFilteredLocations = state.locations.filter(
+            (location) =>
+              location.highway === state.locationFilters.highway &&
+              location.preferredName === action.city
+          );
+        }
       }
       if (state.typeFilters.length > 0) {
         newFilteredLocations = newFilteredLocations.filter((location) => {
@@ -164,7 +171,11 @@ const reducer = (state = defaultState, action) => {
           (location) => location.highway === action.payload
         );
       }
-      debugger;
+      if (state.typeFilters.length > 0) {
+        newFilteredLocations = newFilteredLocations.filter((location) => {
+          return state.typeFilters.includes(location.type);
+        });
+      }
       return {
         ...state,
         filteredLocations: newFilteredLocations,
