@@ -43,17 +43,26 @@ export function getStatesCities(locations) {
     result[state] = new Set();
   }
   for (const location of locations) {
-    result[location.state].add(location.city);
+    result[location.state].add(location.city.trim());
   }
   return result;
 }
 
 export function getHighways(locations) {
+  const result = {};
   const arr = [];
   for (const location of locations) {
-    arr.push(location.highway);
+    if (typeof location.highway === "string" && location.highway.length > 0) {
+      arr.push(location.highway);
+    }
   }
   const uniqueHighways = new Set(arr);
-
-  return uniqueHighways;
+  for (const highway of uniqueHighways) {
+    result[highway] = new Set();
+  }
+  for (const location of locations) {
+    if (result[location.highway])
+      result[location.highway].add(location.city.trim());
+  }
+  return result;
 }

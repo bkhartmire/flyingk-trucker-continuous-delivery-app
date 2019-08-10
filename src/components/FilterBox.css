@@ -1,0 +1,18 @@
+#filterbox {
+  text-align: left;
+  width: 88.5%;
+  height: 160px;
+  margin: 30px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(225, 228, 223);
+  border-radius: 6px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+}
+h3 {
+  font-family: "Roboto", sans-serif;
+  margin: 15px;
+  color: rgb(58, 59, 58);
+  font-size: 30px;
+}

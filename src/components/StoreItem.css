@@ -1,13 +1,16 @@
-h3 {
-  color: grey;
-  margin: 10px;
+.sitename {
+  color: rgb(58, 59, 58);
+  height: 40px;
+  width: 100%;
+  margin: 15px;
+  font-size: 25px;
 }
 .storeitem {
-  margin: 30px;
-  height: 100px;
+  margin: 50px;
+  height: 200px;
 }
 .storebox {
-  height: 100px;
+  height: 200px;
   margin: 20px;
   border-width: 1px;
   border-style: solid;

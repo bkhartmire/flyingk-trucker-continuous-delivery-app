@@ -31,6 +31,7 @@ export default class StoreItem extends Component {
     return (
       <div className="storeitem">
         <div className="storebox">
+
           <span>{this.props.location.preferredName} - </span>
           <span>{this.props.location.siteName}</span>
           {this.gasItem(this.props.location.gasTypes[0])}
@@ -41,6 +42,7 @@ export default class StoreItem extends Component {
               return this.gasItem(type, index);
             })}
           </SlideDown>
+
         </div>
       </div>
     );
