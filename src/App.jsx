@@ -14,8 +14,14 @@ class App extends Component {
         </div>
         <Map id="map" />
         <div id="search">
-          <FilterBox />
-          <StoreList />
+          {this.props.loading ? (
+            <h5>Loading results...</h5>
+          ) : (
+            <React.Fragment>
+              <FilterBox />
+              <StoreList />
+            </React.Fragment>
+          )}
         </div>
       </div>
     );

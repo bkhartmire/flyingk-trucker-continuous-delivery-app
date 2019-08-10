@@ -162,20 +162,15 @@ const reducer = (state = defaultState, action) => {
         resetCityOptions: false,
       };
     case "SELECT_HIGHWAY":
-      if (state.filteredLocations.length > 0) {
-        newFilteredLocations = state.filteredLocations.filter(
-          (location) => location.highway === action.payload
-        );
-      } else {
-        newFilteredLocations = state.locations.filter(
-          (location) => location.highway === action.payload
-        );
-      }
+      newFilteredLocations = state.locations.filter(
+        (location) => location.highway === action.payload
+      );
       if (state.typeFilters.length > 0) {
         newFilteredLocations = newFilteredLocations.filter((location) => {
           return state.typeFilters.includes(location.type);
         });
       }
+
       return {
         ...state,
         filteredLocations: newFilteredLocations,
