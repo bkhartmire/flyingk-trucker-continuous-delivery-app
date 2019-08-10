@@ -43,8 +43,7 @@ function unselectType(type) {
   };
 }
 
-export function filterState(e) {
-  const state = e.target.value;
+export function filterState(state) {
   return function(dispatch) {
     dispatch(selectState(state));
   };
@@ -57,21 +56,19 @@ function selectState(state) {
   };
 }
 
-export function filterCity(city, state) {
+export function filterCity(city) {
   return function(dispatch) {
-    dispatch(selectCity(city, state));
+    dispatch(selectCity(city));
   };
 }
-function selectCity(city, state) {
+function selectCity(city) {
   return {
     type: "SELECT_CITY",
     city,
-    state,
   };
 }
 
-export function filterHighway(e) {
-  const highway = e.target.value;
+export function filterHighway(highway) {
   return function(dispatch) {
     dispatch(selectHighway(highway));
   };
