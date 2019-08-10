@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch) => {
     filterState: (state) => {
       dispatch(filterState(state));
     },
-    filterCity: (city) => {
-      dispatch(filterCity(city));
+    filterCity: (city, state) => {
+      dispatch(filterCity(city, state));
     },
     filterHighway: (highway) => {
       dispatch(filterHighway(highway));
