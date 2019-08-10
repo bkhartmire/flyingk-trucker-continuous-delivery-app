@@ -1,6 +1,5 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
-let restaurantObj = {};
 
 (async () => {
   try {
@@ -10,20 +9,16 @@ let restaurantObj = {};
     for (const location of locations) {
       if (location.Site.Concepts !== undefined) {
         for (const concept of location.Site.Concepts) {
-          restaurantObj[concept.Concept.Id] = {
-            name: String(concept.Concept.Name),
-            icon: concept.Concept.ConceptIcon,
-          };
+          const location_id = location.Site.SiteId;
+          const restaurant_id = concept.Concept.Id;
+
+          const result = await db("location_restaurants").insert({
+            location_id,
+            restaurant_id,
+          });
+          console.log(result);
         }
       }
-    }
-    for (const key in restaurantObj) {
-      const result = await db("restaurants").insert({
-        id: key,
-        name: restaurantObj[key].name,
-        icon: restaurantObj[key].icon,
-      });
-      console.log(result);
     }
     process.exit();
   } catch (err) {

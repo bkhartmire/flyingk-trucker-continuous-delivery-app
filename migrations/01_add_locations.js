@@ -7,6 +7,11 @@ exports.up = function(knex) {
     table.float("longitude");
 
     table.text("name").notNullable();
+
+    table.text("state");
+    table.text("city");
+    table.text("highway");
+    table.text("exit_number");
   });
 };
 
