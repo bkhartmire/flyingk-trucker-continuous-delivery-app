@@ -3,9 +3,10 @@ import { getStatesCities, getHighways } from "../utils";
 const defaultState = {
   locations: [],
   states: {},
-  highways: [],
+  highways: {},
   filteredLocations: [],
   madeSelection: false,
+  resetCityOptions: false,
   locationFilters: {
     state: null,
     city: null,
@@ -16,8 +17,6 @@ const defaultState = {
 };
 
 //show no results if search and no filteredLocations come up
-//highways cities states respond to each other
-//all filters should work at the same time
 
 const getSelectedLocationFilters = (state) => {
   const result = {};
@@ -121,7 +120,12 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         filteredLocations: newFilteredLocations,
-        locationFilters: { ...state.locationFilters, state: action.payload },
+        locationFilters: {
+          ...state.locationFilters,
+          state: action.payload,
+          highway: null,
+        },
+        resetCityOptions: true,
         madeSelection: true,
       };
     case "SELECT_CITY":
@@ -130,6 +134,7 @@ const reducer = (state = defaultState, action) => {
           (location) => location.state === action.state
         );
       } else {
+        //can pass in state or highway
         newFilteredLocations = state.locations.filter(
           (location) =>
             location.state === action.state &&
@@ -147,6 +152,7 @@ const reducer = (state = defaultState, action) => {
         filteredLocations: newFilteredLocations,
         locationFilters: { ...state.locationFilters, city: action.city },
         madeSelection: true,
+        resetCityOptions: false,
       };
     case "SELECT_HIGHWAY":
       if (state.filteredLocations.length > 0) {
@@ -162,8 +168,13 @@ const reducer = (state = defaultState, action) => {
       return {
         ...state,
         filteredLocations: newFilteredLocations,
-        locationFilters: { ...state.locationFilters, highway: action.payload },
+        locationFilters: {
+          ...state.locationFilters,
+          highway: action.payload,
+          state: null,
+        },
         madeSelection: true,
+        resetCityOptions: true,
       };
     default:
       return state;
