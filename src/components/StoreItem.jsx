@@ -15,9 +15,9 @@ export default class StoreItem extends Component {
     this.setState({ closed: !this.state.closed });
   }
 
-  gasItem(type) {
+  gasItem(type, index) {
     return type ? (
-      <ul>
+      <ul key={index}>
         <li>{type.name}</li>
         <li>{type.cash_price}</li>
         {type.credit_price !== -1 && <li>{type.credit_price}</li>}
@@ -37,8 +37,8 @@ export default class StoreItem extends Component {
           {this.gasItem(this.props.location.gasTypes[3])}
           <button onClick={() => this.handleClick()}>Show More</button>
           <SlideDown closed={this.state.closed}>
-            {this.props.location.gasTypes.map((type) => {
-              return this.gasItem(type);
+            {this.props.location.gasTypes.map((type, index) => {
+              return this.gasItem(type, index);
             })}
           </SlideDown>
         </div>
