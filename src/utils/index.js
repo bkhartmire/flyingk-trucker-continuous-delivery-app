@@ -43,7 +43,7 @@ export function getStatesCities(locations) {
     result[state] = new Set();
   }
   for (const location of locations) {
-    result[location.state].add(location.city);
+    result[location.state].add(location.city.trim());
   }
   return result;
 }
