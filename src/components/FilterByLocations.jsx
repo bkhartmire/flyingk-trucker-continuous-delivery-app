@@ -6,21 +6,33 @@ export default class FilterByLocations extends Component {
     super(props);
     this.state = {
       value: false,
+      reset: false,
     };
   }
 
   updateCities(e) {
-    this.setState({ value: e.target.value });
+    this.setState({ value: e.target.value, reset: true });
     this.props.filterState(e);
   }
 
+  selectCity(e) {
+    this.setState({ reset: false });
+    this.props.filterCity(e.target.value, this.state.value);
+  }
+
   render() {
+    let cityOptionValue = null;
+    if (this.state.reset) {
+      cityOptionValue = "default";
+    }
     return (
       <div>
         <span>Locations: </span>
 
-        <select onChange={(e) => this.updateCities(e)}>
-          <option value="">--State--</option>
+        <select id="city_select" onChange={(e) => this.updateCities(e)}>
+          <option value="" selected>
+            --State--
+          </option>
           {Object.keys(this.props.states).map((state, index) => {
             return (
               <option key={index} value={state}>
@@ -30,16 +42,12 @@ export default class FilterByLocations extends Component {
           })}
         </select>
 
-        <select
-          onChange={(e) => {
-            this.props.filterCity(e.target.value, this.state.value);
-          }}
-        >
-          <option value="">--City--</option>
+        <select value={cityOptionValue} onChange={(e) => this.selectCity(e)}>
+          <option value="default">--City--</option>
           {this.state.value &&
             [...this.props.states[this.state.value]].map((city, index) => {
               return (
-                <option key={index + "a"} value={city}>
+                <option key={index + "a"} value={city} selected={false}>
                   {city}
                 </option>
               );
@@ -50,7 +58,9 @@ export default class FilterByLocations extends Component {
             this.props.filterHighway(e.target.value);
           }}
         >
-          <option value="">--Highway--</option>
+          <option value="" selected>
+            --Highway--
+          </option>
           {[...this.props.highways].map((state, index) => {
             return (
               <option key={index} value={state}>
