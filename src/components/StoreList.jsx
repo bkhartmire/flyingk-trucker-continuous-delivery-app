@@ -6,12 +6,16 @@ export default class StoreList extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.locations.length > 0 && (
+        {this.props.locations.length > 0 ? (
           <div id="storelist">
             {this.props.locations.map((location, index) => {
               return <StoreItem key={index} location={location} />;
             })}
           </div>
+        ) : this.props.madeSelection ? (
+          <h5>No results match your selection.</h5>
+        ) : (
+          <h5>Please make a selection.</h5>
         )}
       </React.Fragment>
     );
