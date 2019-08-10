@@ -43,8 +43,7 @@ function unselectType(type) {
   };
 }
 
-export function filterState(e) {
-  const state = e.target.value;
+export function filterState(state) {
   return function(dispatch) {
     dispatch(selectState(state));
   };

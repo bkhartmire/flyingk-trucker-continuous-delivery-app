@@ -49,6 +49,7 @@ export function getStatesCities(locations) {
 }
 
 export function getHighways(locations) {
+  const result = {};
   const arr = [];
   for (const location of locations) {
     if (typeof location.highway === "string" && location.highway.length > 0) {
@@ -56,6 +57,12 @@ export function getHighways(locations) {
     }
   }
   const uniqueHighways = new Set(arr);
-
-  return uniqueHighways;
+  for (const highway of uniqueHighways) {
+    result[highway] = new Set();
+  }
+  for (const location of locations) {
+    if (result[location.highway])
+      result[location.highway].add(location.city.trim());
+  }
+  return result;
 }
