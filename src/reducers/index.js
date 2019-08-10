@@ -16,8 +16,6 @@ const defaultState = {
   loading: true,
 };
 
-//show no results if search and no filteredLocations come up
-
 const getSelectedLocationFilters = (state) => {
   const result = {};
   for (const filter in state.locationFilters) {
