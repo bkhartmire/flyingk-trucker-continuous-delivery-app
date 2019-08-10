@@ -46,7 +46,6 @@ const reducer = (state = defaultState, action) => {
       };
     case "SELECT_TYPE":
       selectedFilters = getSelectedFilters(state);
-      debugger;
       if (!state.madeSelection || Object.keys(selectedFilters).length === 0) {
         newFilteredLocations = state.locations.filter(
           (location) => location.type === action.payload
@@ -84,7 +83,6 @@ const reducer = (state = defaultState, action) => {
           return true;
         });
       } else {
-        debugger;
         newFilteredLocations = state.filteredLocations.filter(
           (location) => location.type !== action.payload
         );
@@ -93,7 +91,6 @@ const reducer = (state = defaultState, action) => {
       newFilters = state.typeFilters.filter(
         (filter) => filter !== action.payload
       );
-      debugger;
       return {
         ...state,
         filteredLocations: newFilteredLocations,
@@ -113,7 +110,6 @@ const reducer = (state = defaultState, action) => {
           (location) => location.state === action.payload
         );
       }
-      debugger;
       return {
         ...state,
         filteredLocations: newFilteredLocations,
