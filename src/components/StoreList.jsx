@@ -13,9 +13,9 @@ export default class StoreList extends Component {
             })}
           </div>
         ) : this.props.madeSelection ? (
-          <h5>No results match your selection.</h5>
+          <h5 className="message">No results match your selection.</h5>
         ) : (
-          <h5>Please make a selection.</h5>
+          <h5 className="message">Please make a selection.</h5>
         )}
       </React.Fragment>
     );
