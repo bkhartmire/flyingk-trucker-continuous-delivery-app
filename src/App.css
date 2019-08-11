@@ -18,3 +18,11 @@ ul {
 li {
   list-style-type: none;
 }
+
+span {
+  margin: 5px;
+}
+
+.message {
+  padding-left: 10px;
+}
