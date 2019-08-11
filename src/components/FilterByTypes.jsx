@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class FilterByTypes extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <span>Types:</span>
         <label htmlFor="travel_stop">Travel Stop</label>
         <input
@@ -17,7 +17,7 @@ export default class FilterByTypes extends Component {
           name="country_store"
           onClick={(e) => this.props.filterType(e, "country store")}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }
