@@ -1,5 +1,6 @@
 const fs = require("fs");
 const db = require("../server/knex.js");
+const path = require("path");
 
 (async () => {
   try {
@@ -7,7 +8,7 @@ const db = require("../server/knex.js");
       fs.readFileSync(__dirname + "/locations.json")
     );
     for (const location of locations) {
-      const site = location;
+      const site = location.Site;
       const result = await db("data").insert({
         site,
       });
