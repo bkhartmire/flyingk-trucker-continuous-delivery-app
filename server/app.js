@@ -29,7 +29,11 @@ app.get("/api/locations", async (req, res) => {
 app.get("/api/locations/:id/gastypes", async (req, res) => {
   try {
     const gasTypes = await db
-      .select("gas_types.name")
+      .select(
+        "gas_types.name",
+        "location_gas_types.cash_price",
+        "location_gas_types.credit_price"
+      )
       .from("gas_types")
       .leftJoin(
         "location_gas_types",
