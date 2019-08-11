@@ -1,20 +1,50 @@
-h3 {
-  color: grey;
-  margin: 10px;
+.sitename {
+  color: rgb(58, 59, 58);
+  height: 40px;
+  width: 100%;
+  margin: 15px;
+  font-size: 25px;
 }
 .storeitem {
-  margin: 30px;
-  height: 100px;
+  margin: 50px;
+  height: 200px;
 }
 .storebox {
-  height: 100px;
+  min-height: 200px;
   margin: 20px;
   border-width: 1px;
   border-style: solid;
   border-color: rgb(225, 228, 223);
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
   border-radius: 6px;
+  background-color: white;
 }
 .storebox:hover {
   box-shadow: 3px 3px 15px rgba(49, 148, 9);
+}
+
+.store-title {
+  display: block;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.gas-container {
+  display: inline-block;
+  padding: 5px;
+}
+
+.in-slider-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.in-slider-container p {
+  padding: 0 7px 0 7px;
+}
+
+.react-slidedown {
+  position: relative;
+  background-color: white;
+  z-index: 2;
 }
