@@ -97,15 +97,15 @@ app.get("/api/amenities", async (req, res) => {
   }
 });
 
-app.get("/api/haha", async (req, res) => {
-  try {
-    const locations = await db.raw("select site from data;");
-    res.json(locations);
-  } catch (err) {
-    console.error("Error loading locations!", err);
-    res.sendStatus(500);
-  }
-});
+// app.get("/api/haha", async (req, res) => {
+//   try {
+//     const locations = await db.raw("select site from data;");
+//     res.json(locations);
+//   } catch (err) {
+//     console.error("Error loading locations!", err);
+//     res.sendStatus(500);
+//   }
+// });
 // app.get("/api/restaurants", async (req, res) => {
 //   try {
 //     const restaurants = await db.select().table("restaurants");
