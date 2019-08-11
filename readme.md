@@ -19,6 +19,6 @@ This app is a single-page app for travellers that want to search for truck stops
 1.  To create database, run: `create database truckstop;`
 1.  To connect to database, run: `\c truckstop`
 1.  To run migrations, run: `yarn start`
-1.  To seed data into your database, run: `chmod +x runall.sh` then `./runall.sh` if you are a mac user, and just `./runall.sh` for windows users.
+1.  To seed data into your database, run: `chmod +x runall.sh` then `./runall.sh`.
 1.  To see build the production server, run: `yarn build`
 1.  To have the production server running, run: `yarn hack`
