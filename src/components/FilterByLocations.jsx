@@ -33,7 +33,7 @@ export default class FilterByLocations extends Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
         <span>Locations: </span>
 
         <select onChange={(e) => this.props.filterState(e.target.value)}>
@@ -70,7 +70,7 @@ export default class FilterByLocations extends Component {
               );
             })}
         </select>
-      </div>
+      </React.Fragment>
     );
   }
 }

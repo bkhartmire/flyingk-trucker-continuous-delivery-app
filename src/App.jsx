@@ -15,7 +15,7 @@ class App extends Component {
         <Map id="map" />
         <div id="search">
           {this.props.loading ? (
-            <h5>Loading results...</h5>
+            <h5 className="message">Loading results...</h5>
           ) : (
             <React.Fragment>
               <FilterBox />

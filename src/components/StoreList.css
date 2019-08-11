@@ -5,14 +5,8 @@ h1 {
 
 #storelist {
   text-align: left;
-  width: 90%;
+  width: 100%;
   height: auto;
-  margin: 30px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(225, 228, 223);
-  border-radius: 6px;
-  box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.5);
 }
 
 #title-store-list {
