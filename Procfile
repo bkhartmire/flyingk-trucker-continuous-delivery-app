@@ -1,1 +1,1 @@
-web: ./runall.sh
+web: yarn start
