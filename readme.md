@@ -9,6 +9,7 @@
 ## 1. Introduction
 
 This app is a single-page app for travellers that want to search for truck stops.
+View the deployed version at this [link](https://react-team1-production-app.herokuapp.com/).
 
 ## 2. Set Up
 
