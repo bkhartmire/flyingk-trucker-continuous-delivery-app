@@ -26,6 +26,10 @@ const getSelectedLocationFilters = (state) => {
   return result;
 };
 
+// const filterByLocation = () => {
+
+// }
+
 const reducer = (state = defaultState, action) => {
   let newFilteredLocations;
   let newFilters;
