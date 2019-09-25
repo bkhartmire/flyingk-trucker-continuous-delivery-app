@@ -1,1 +1,0 @@
-web: ./runall.sh
