@@ -51,7 +51,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         selectedFilters: {
           ...state.selectedFilters,
-          travelStop: !this.state.selectedFilters.travelStop,
+          travelStop: !state.selectedFilters.travelStop,
         },
       };
     // selectedLocationFilters = getSelectedLocationFilters(state);
@@ -92,7 +92,7 @@ const reducer = (state = defaultState, action) => {
         ...state,
         selectedFilters: {
           ...state.selectedFilters,
-          countryStore: !this.state.selectedFilters.countryStore,
+          countryStore: !state.selectedFilters.countryStore,
         },
       };
     // case "UNSELECT_TYPE":
