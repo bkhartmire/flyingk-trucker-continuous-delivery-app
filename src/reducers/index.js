@@ -18,19 +18,19 @@ const defaultState = {
 };
 
 const filterLocations = (filters, locations) => {
-  let filteredLocations = locations;
+  let filteredLocations = [];
   for (const filter in filters) {
     if (typeof filters[filter] === "boolean" && filters[filter]) {
-      filteredLocations = filteredLocations.filter((location) =>
-        location.type
-          .replace(/\s/g, "")
-          .toLowerCase()
-          .includes(filter.toLowerCase())
+      filteredLocations = filteredLocations.concat(
+        locations.filter((location) =>
+          location.type
+            .replace(/\s/g, "")
+            .toLowerCase()
+            .includes(filter.toLowerCase())
+        )
       );
-      debugger;
     }
     if (typeof filters[filter] === "string" && filters[filter] !== "") {
-      debugger;
     }
   }
   return filteredLocations;
