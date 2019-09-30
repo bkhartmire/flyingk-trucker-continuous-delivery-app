@@ -9,13 +9,13 @@ export default class FilterByTypes extends Component {
         <input
           type="checkbox"
           name="travel_stop"
-          onClick={(e) => this.props.filterType(e, "travel stop")}
+          onClick={() => this.props.selectTravelStop()}
         />
         <label htmlFor="country_store">Country Store</label>
         <input
           type="checkbox"
           name="country_store"
-          onClick={(e) => this.props.filterType(e, "country store")}
+          onClick={() => this.props.selectCountryStore()}
         />
       </React.Fragment>
     );

@@ -21,19 +21,6 @@ export function setStatesCities() {
   return { type: "SET_STATES_CITIES" };
 }
 
-export function filterType(type) {
-  return function(dispatch) {
-    dispatch(selectType(type));
-  };
-}
-
-function selectType(type) {
-  return {
-    type: "SELECT_TYPE",
-    payload: type,
-  };
-}
-
 export function filterState(state) {
   return function(dispatch) {
     dispatch(selectState(state));
