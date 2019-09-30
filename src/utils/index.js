@@ -60,7 +60,7 @@ function filterRestaurants(restaurants) {
 }
 
 export async function fetchLocations() {
-  const { data: locations } = await axios.get("/api/haha"); // ES6 destructuring & aliasing
+  const { data: locations } = await axios.get("/api/data"); // ES6 destructuring & aliasing
   const markers = locations.rows.map(async ({ site: l }) => {
     return {
       position: {
