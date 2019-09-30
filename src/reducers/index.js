@@ -123,22 +123,23 @@ const reducer = (state = defaultState, action) => {
         resetCityOptions: false,
       };
     case "SELECT_HIGHWAY":
-      filteredLocations = state.locations.filter(
-        (location) => location.highway === action.payload
+      filteredLocations = filterLocations(
+        {
+          ...state.selectedFilters,
+          highway: action.payload,
+          state: "",
+          city: "",
+        },
+        state.locations
       );
-      if (state.typeFilters.length > 0) {
-        filteredLocations = filteredLocations.filter((location) => {
-          return state.typeFilters.includes(location.type);
-        });
-      }
-
       return {
         ...state,
         filteredLocations,
-        locationFilters: {
-          ...state.locationFilters,
+        selectedFilters: {
+          ...state.selectedFilters,
           highway: action.payload,
-          state: null,
+          state: "",
+          city: "",
         },
         madeSelection: true,
         resetCityOptions: true,
