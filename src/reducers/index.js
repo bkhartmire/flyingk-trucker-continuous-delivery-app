@@ -31,9 +31,14 @@ const filterLocations = (filters, locations) => {
       );
     }
     if (typeof filters[filter] === "string" && filters[filter] !== "") {
-      filteredLocations = filteredLocations.concat(
-        locations.filter((location) => location[filter] === filters[filter])
-      );
+      debugger;
+      filteredLocations.length > 0
+        ? (filteredLocations = filteredLocations.filter(
+            (location) => location[filter] === filters[filter]
+          ))
+        : (filteredLocations = locations.filter(
+            (location) => location[filter] === filters[filter]
+          ));
     }
   }
   return filteredLocations;
@@ -101,35 +106,16 @@ const reducer = (state = defaultState, action) => {
         madeSelection: true,
       };
     case "SELECT_CITY":
-      if (action.city === "default") {
-        filteredLocations = state.locations.filter(
-          (location) => location.state === action.state
-        );
-      } else {
-        if (state.locationFilters.state) {
-          filteredLocations = state.locations.filter(
-            (location) =>
-              location.state === state.locationFilters.state &&
-              location.preferredName === action.city
-          );
-        } else {
-          filteredLocations = state.locations.filter(
-            (location) =>
-              location.highway === state.locationFilters.highway &&
-              location.preferredName === action.city
-          );
-        }
-      }
-      if (state.typeFilters.length > 0) {
-        filteredLocations = filteredLocations.filter((location) => {
-          return state.typeFilters.includes(location.type);
-        });
-      }
+      filteredLocations = filterLocations(
+        { ...state.selectedFilters, city: action.city },
+        state.locations
+      );
+      debugger;
 
       return {
         ...state,
         filteredLocations,
-        locationFilters: { ...state.locationFilters, city: action.city },
+        selectedFilters: { ...state.locationFilters, city: action.city },
         madeSelection: true,
         resetCityOptions: false,
       };
