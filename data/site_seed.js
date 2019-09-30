@@ -11,7 +11,6 @@ const db = require("../server/knex.js");
       const result = await db("data").insert({
         site,
       });
-      console.log(result);
     }
   } catch (err) {
     console.error("Error inserting records", err);

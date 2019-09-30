@@ -16,7 +16,6 @@ const db = require("../server/knex.js");
             location_id,
             restaurant_id,
           });
-          console.log(result);
         }
       }
     }

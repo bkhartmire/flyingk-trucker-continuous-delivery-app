@@ -23,7 +23,6 @@ let restaurantObj = {};
         name: restaurantObj[key].name,
         icon: restaurantObj[key].icon,
       });
-      console.log(result);
     }
     process.exit();
   } catch (err) {

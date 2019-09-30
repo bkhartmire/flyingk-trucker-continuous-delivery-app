@@ -18,7 +18,6 @@ const db = require("../server/knex.js");
             location_id,
             amenity_id,
           });
-          console.log(result);
         }
       }
     }

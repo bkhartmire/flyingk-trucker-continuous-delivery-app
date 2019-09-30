@@ -19,7 +19,6 @@ let amenObj = {};
         id: key,
         name: amenObj[key],
       });
-      console.log(result);
     }
     process.exit();
   } catch (err) {

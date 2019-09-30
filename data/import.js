@@ -30,7 +30,6 @@ const db = require("../server/knex.js");
         type,
         preferred_name,
       });
-      console.log(result);
     }
     process.exit();
   } catch (err) {

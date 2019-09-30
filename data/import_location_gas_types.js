@@ -27,15 +27,12 @@ const db = require("../server/knex.js");
           const cash_price = fuelPrice.CashPrice;
           const credit_price =
             fuelPrice.CreditPrice === null ? -1 : fuelPrice.CreditPrice;
-
-          //console.log(location_id, gas_type_id, cash_price, credit_price);
           const result = await db("location_gas_types").insert({
             location_id,
             gas_type_id,
             cash_price,
             credit_price,
           });
-          console.log(result);
         }
       }
     }

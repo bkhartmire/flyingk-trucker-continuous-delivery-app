@@ -18,7 +18,6 @@ let gasTypes = new Set();
       const result = await db("gas_types").insert({
         name: key,
       });
-      console.log(result);
     }
     process.exit();
   } catch (err) {

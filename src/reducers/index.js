@@ -36,6 +36,7 @@ const reducer = (state = defaultState, action) => {
   let selectedLocationFilters;
   switch (action.type) {
     case "SET_LOCATIONS":
+      debugger;
       return {
         ...state,
         locations: action.locations,
