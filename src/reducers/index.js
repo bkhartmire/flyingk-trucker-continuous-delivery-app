@@ -31,6 +31,9 @@ const filterLocations = (filters, locations) => {
       );
     }
     if (typeof filters[filter] === "string" && filters[filter] !== "") {
+      filteredLocations = filteredLocations.concat(
+        locations.filter((location) => location[filter] === filters[filter])
+      );
     }
   }
   return filteredLocations;
@@ -72,7 +75,6 @@ const reducer = (state = defaultState, action) => {
         },
         state.locations
       );
-      filterLocations("country store", state);
       return {
         ...state,
         selectedFilters: {
@@ -83,31 +85,17 @@ const reducer = (state = defaultState, action) => {
         filteredLocations,
       };
     case "SELECT_STATE":
-      if (
-        state.filteredLocations.some(
-          (location) => location.state === action.payload
-        )
-      ) {
-        filteredLocations = state.filteredLocations.filter(
-          (location) => location.state === action.payload
-        );
-      } else {
-        filteredLocations = state.locations.filter(
-          (location) => location.state === action.payload
-        );
-      }
-      if (state.typeFilters.length > 0) {
-        filteredLocations = filteredLocations.filter((location) => {
-          return state.typeFilters.includes(location.type);
-        });
-      }
+      filteredLocations = filterLocations(
+        { ...state.selectedFilters, state: action.payload, highway: "" },
+        state.locations
+      );
       return {
         ...state,
         filteredLocations,
-        locationFilters: {
-          ...state.locationFilters,
+        selectedFilters: {
+          ...state.selectedFilters,
           state: action.payload,
-          highway: null,
+          highway: "",
         },
         resetCityOptions: true,
         madeSelection: true,

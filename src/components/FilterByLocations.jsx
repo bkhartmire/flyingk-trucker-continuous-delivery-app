@@ -9,7 +9,7 @@ export default class FilterByLocations extends Component {
       cityOptionValue = "default";
     }
     let cityOptions;
-    if (this.props.selectedFilters.state) {
+    if (this.props.selectedFilters.state !== "") {
       cityOptions = [
         ...this.props.states[this.props.selectedFilters.state],
       ].map((city, index) => {
@@ -20,7 +20,7 @@ export default class FilterByLocations extends Component {
         );
       });
     }
-    if (this.props.selectedFilters.highway) {
+    if (this.props.selectedFilters.highway !== "") {
       cityOptions = [
         ...this.props.highways[this.props.selectedFilters.highway],
       ].map((city, index) => {
@@ -40,7 +40,7 @@ export default class FilterByLocations extends Component {
           <option value="" selected>
             --State--
           </option>
-          {!this.props.selectedFilters.highway &&
+          {this.props.selectedFilters.highway === "" &&
             Object.keys(this.props.states).map((state, index) => {
               return (
                 <option key={index} value={state}>
