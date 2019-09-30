@@ -31,7 +31,6 @@ const filterLocations = (filters, locations) => {
       );
     }
     if (typeof filters[filter] === "string" && filters[filter] !== "") {
-      debugger;
       filteredLocations.length > 0
         ? (filteredLocations = filteredLocations.filter(
             (location) => location[filter] === filters[filter]
@@ -110,12 +109,10 @@ const reducer = (state = defaultState, action) => {
         { ...state.selectedFilters, city: action.city },
         state.locations
       );
-      debugger;
-
       return {
         ...state,
         filteredLocations,
-        selectedFilters: { ...state.locationFilters, city: action.city },
+        selectedFilters: { ...state.selectedFilters, city: action.city },
         madeSelection: true,
         resetCityOptions: false,
       };
