@@ -21,24 +21,15 @@ export function setStatesCities() {
   return { type: "SET_STATES_CITIES" };
 }
 
-export function filterType(e, type) {
+export function filterType(type) {
   return function(dispatch) {
-    e.target.checked
-      ? dispatch(selectType(type))
-      : dispatch(unselectType(type));
+    dispatch(selectType(type));
   };
 }
 
 function selectType(type) {
   return {
     type: "SELECT_TYPE",
-    payload: type,
-  };
-}
-
-function unselectType(type) {
-  return {
-    type: "UNSELECT_TYPE",
     payload: type,
   };
 }
