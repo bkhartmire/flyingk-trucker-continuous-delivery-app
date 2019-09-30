@@ -19,7 +19,7 @@ const MyMap = withGoogleMap((props) => {
       onClick={props.onMapClick}
     >
       {props.markers.map((marker) => {
-        let imgTag = marker.type === "travel stop" ? imgT : imgC;
+        const imgTag = marker.type === "Travel Stop" ? imgT : imgC;
         return (
           <Marker
             key={marker.siteName}
