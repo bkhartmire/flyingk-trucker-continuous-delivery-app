@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
   return {
     states: state.states,
     highways: state.highways,
-    selectedFilters: state.locationFilters,
+    selectedFilters: state.selectedFilters,
     resetCityOptions: state.resetCityOptions,
   };
 };
