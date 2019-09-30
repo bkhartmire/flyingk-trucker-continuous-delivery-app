@@ -7,12 +7,19 @@ const defaultState = {
   filteredLocations: [],
   madeSelection: false,
   resetCityOptions: false,
-  locationFilters: {
-    state: null,
-    city: null,
-    highway: null,
+  selectedFilters: {
+    state: "",
+    city: "",
+    highway: "",
+    travelStop: false,
+    countryStore: false,
   },
-  typeFilters: [],
+  // locationFilters: {
+  //   state: null,
+  //   city: null,
+  //   highway: null,
+  // },
+  // typeFilters: [],
   loading: true,
 };
 
@@ -26,17 +33,12 @@ const getSelectedLocationFilters = (state) => {
   return result;
 };
 
-// const filterByLocation = () => {
-
-// }
+const filterByLocation = () => {};
 
 const reducer = (state = defaultState, action) => {
   let newFilteredLocations;
-  let newFilters;
-  let selectedLocationFilters;
   switch (action.type) {
     case "SET_LOCATIONS":
-      debugger;
       return {
         ...state,
         locations: action.locations,
@@ -44,63 +46,78 @@ const reducer = (state = defaultState, action) => {
         states: getStatesCities(action.locations),
         highways: getHighways(action.locations),
       };
-    case "SELECT_TYPE":
-      selectedLocationFilters = getSelectedLocationFilters(state);
-      if (
-        state.typeFilters.length === 1 &&
-        Object.keys(selectedLocationFilters).length === 0
-      ) {
-        newFilteredLocations = [...state.locations];
-      } else if (Object.keys(selectedLocationFilters).length === 0) {
-        newFilteredLocations = state.locations.filter(
-          (location) => location.type === action.payload
-        );
-      } else if (
-        Object.keys(selectedLocationFilters).length > 0 ||
-        state.filteredLocations.length === 0
-      ) {
-        newFilteredLocations = state.locations.filter((location) => {
-          for (const key in selectedLocationFilters) {
-            if (location[key] !== selectedLocationFilters[key]) return false;
-          }
-          return true;
-        });
-      }
-      newFilteredLocations = newFilteredLocations.filter((location) => {
-        return (
-          state.typeFilters.includes(location.type) ||
-          location.type === action.payload
-        );
-      });
+    case "SELECT_TRAVEL_STOP":
       return {
         ...state,
-        filteredLocations: [...newFilteredLocations],
-        typeFilters: [...state.typeFilters, action.payload],
-        madeSelection: true,
+        selectedFilters: {
+          ...state.selectedFilters,
+          travelStop: !this.state.selectedFilters.travelStop,
+        },
       };
-    case "UNSELECT_TYPE":
-      if (state.typeFilters.length === 1) {
-        selectedLocationFilters = getSelectedLocationFilters(state);
-        newFilteredLocations = state.locations.filter((location) => {
-          for (const key in selectedLocationFilters) {
-            if (location[key] !== selectedLocationFilters[key]) return false;
-          }
-          return true;
-        });
-      } else {
-        newFilteredLocations = state.filteredLocations.filter(
-          (location) => location.type !== action.payload
-        );
-      }
+    // selectedLocationFilters = getSelectedLocationFilters(state);
+    // if (
+    //   state.typeFilters.length === 1 &&
+    //   Object.keys(selectedLocationFilters).length === 0
+    // ) {
+    //   newFilteredLocations = [...state.locations];
+    // } else if (Object.keys(selectedLocationFilters).length === 0) {
+    //   newFilteredLocations = state.locations.filter(
+    //     (location) => location.type === action.payload
+    //   );
+    // } else if (
+    //   Object.keys(selectedLocationFilters).length > 0 ||
+    //   state.filteredLocations.length === 0
+    // ) {
+    //   newFilteredLocations = state.locations.filter((location) => {
+    //     for (const key in selectedLocationFilters) {
+    //       if (location[key] !== selectedLocationFilters[key]) return false;
+    //     }
+    //     return true;
+    //   });
+    // }
+    // newFilteredLocations = newFilteredLocations.filter((location) => {
+    //   return (
+    //     state.typeFilters.includes(location.type) ||
+    //     location.type === action.payload
+    //   );
+    // });
+    // return {
+    //   ...state,
+    //   filteredLocations: [...newFilteredLocations],
+    //   typeFilters: [...state.typeFilters, action.payload],
+    //   madeSelection: true,
+    // };
+    case "SELECT_COUNTRY_STORE":
+      return {
+        ...state,
+        selectedFilters: {
+          ...state.selectedFilters,
+          countryStore: !this.state.selectedFilters.countryStore,
+        },
+      };
+    // case "UNSELECT_TYPE":
+    //   if (state.typeFilters.length === 1) {
+    //     selectedLocationFilters = getSelectedLocationFilters(state);
+    //     newFilteredLocations = state.locations.filter((location) => {
+    //       for (const key in selectedLocationFilters) {
+    //         if (location[key] !== selectedLocationFilters[key]) return false;
+    //       }
+    //       return true;
+    //     });
+    //   } else {
+    //     newFilteredLocations = state.filteredLocations.filter(
+    //       (location) => location.type !== action.payload
+    //     );
+    //   }
 
-      newFilters = state.typeFilters.filter(
-        (filter) => filter !== action.payload
-      );
-      return {
-        ...state,
-        filteredLocations: newFilteredLocations,
-        typeFilters: newFilters,
-      };
+    //   newFilters = state.typeFilters.filter(
+    //     (filter) => filter !== action.payload
+    //   );
+    //   return {
+    //     ...state,
+    //     filteredLocations: newFilteredLocations,
+    //     typeFilters: newFilters,
+    //   };
     case "SELECT_STATE":
       if (
         state.filteredLocations.some(
