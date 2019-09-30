@@ -90,7 +90,12 @@ const reducer = (state = defaultState, action) => {
       };
     case "SELECT_STATE":
       filteredLocations = filterLocations(
-        { ...state.selectedFilters, state: action.payload, highway: "" },
+        {
+          ...state.selectedFilters,
+          state: action.payload,
+          highway: "",
+          city: "",
+        },
         state.locations
       );
       return {
@@ -100,6 +105,7 @@ const reducer = (state = defaultState, action) => {
           ...state.selectedFilters,
           state: action.payload,
           highway: "",
+          city: "",
         },
         resetCityOptions: true,
         madeSelection: true,
