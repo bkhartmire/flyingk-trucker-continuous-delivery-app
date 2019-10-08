@@ -19,33 +19,68 @@ const defaultState = {
 
 const filterLocations = (filters, locations) => {
   let filteredLocations = [];
-  for (const filter in filters) {
+  let locationFilterSelected = false;
+  const locationFilters = ["state", "city", "highway"];
+
+  for (const filter of locationFilters) {
     const arrayToFilter =
       filteredLocations.length === 0 ? locations : filteredLocations;
-    if (typeof filters[filter] === "boolean") {
-      if (filters[filter]) {
-        filteredLocations = arrayToFilter.filter((location) =>
-          location.type
-            .replace(/\s/g, "")
-            .toLowerCase()
-            .includes(filter.toLowerCase())
-        );
-      } else {
-        filteredLocations = filteredLocations.filter(
-          (location) =>
-            !location.type
-              .replace(/\s/g, "")
-              .toLowerCase()
-              .includes(filter.toLowerCase())
-        );
-      }
-    }
-    if (typeof filters[filter] === "string" && filters[filter] !== "") {
+    if (filters[filter] !== "") {
+      locationFilterSelected = true;
       filteredLocations = arrayToFilter.filter(
         (location) => location[filter] === filters[filter]
       );
     }
   }
+
+  if (locationFilterSelected) {
+    //if neither selected, default will be to show all. Only filter if one is selected
+    if (
+      (filters.travelStop && !filters.countryStore) ||
+      (filters.countryStore && !filters.travelStop)
+    ) {
+      const filter = filters.travelStop ? "travelStop" : "countryStore";
+      return filteredLocations.filter((location) =>
+        location.type
+          .replace(/\s/g, "")
+          .toLowerCase()
+          .includes(filter.toLowerCase())
+      );
+    }
+  }
+
+  // for (const filter in filters) {
+  //   const arrayToFilter =
+  //     filteredLocations.length === 0 ? locations : filteredLocations;
+  //   if (typeof filters[filter] === "boolean") {
+  //     debugger;
+  //     if (filter === "travelStop") {
+  //       filteredLocations = filterType(
+  //         { type: filter, value: filters[filter] },
+  //         arrayToFilter
+  //       );
+  //     } else {
+  //       if (locationFilterSelected) {
+  //         filteredLocations = filteredLocations.concat(
+  //           filterType(
+  //             { type: filter, value: filters[filter] },
+  //             filteredLocations
+  //           )
+  //         );
+  //       } else {
+  //         filteredLocations = filteredLocations.concat(
+  //           filterType({ type: filter, value: filters[filter] }, locations)
+  //         );
+  //       }
+  //     }
+  //   }
+  //   if (typeof filters[filter] === "string" && filters[filter] !== "") {
+  //     locationFilterSelected = true;
+  //     filteredLocations = arrayToFilter.filter(
+  //       (location) => location[filter] === filters[filter]
+  //     );
+  //   }
+  // }
   return filteredLocations;
 };
 
