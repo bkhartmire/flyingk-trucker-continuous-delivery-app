@@ -20,24 +20,30 @@ const defaultState = {
 const filterLocations = (filters, locations) => {
   let filteredLocations = [];
   for (const filter in filters) {
-    if (typeof filters[filter] === "boolean" && filters[filter]) {
-      filteredLocations = filteredLocations.concat(
-        locations.filter((location) =>
+    const arrayToFilter =
+      filteredLocations.length === 0 ? locations : filteredLocations;
+    if (typeof filters[filter] === "boolean") {
+      if (filters[filter]) {
+        filteredLocations = arrayToFilter.filter((location) =>
           location.type
             .replace(/\s/g, "")
             .toLowerCase()
             .includes(filter.toLowerCase())
-        )
-      );
+        );
+      } else {
+        filteredLocations = filteredLocations.filter(
+          (location) =>
+            !location.type
+              .replace(/\s/g, "")
+              .toLowerCase()
+              .includes(filter.toLowerCase())
+        );
+      }
     }
     if (typeof filters[filter] === "string" && filters[filter] !== "") {
-      filteredLocations.length > 0
-        ? (filteredLocations = filteredLocations.filter(
-            (location) => location[filter] === filters[filter]
-          ))
-        : (filteredLocations = locations.filter(
-            (location) => location[filter] === filters[filter]
-          ));
+      filteredLocations = arrayToFilter.filter(
+        (location) => location[filter] === filters[filter]
+      );
     }
   }
   return filteredLocations;
