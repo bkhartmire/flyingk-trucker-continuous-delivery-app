@@ -21,6 +21,7 @@ const filterLocations = (filters, locations) => {
   let filteredLocations = [];
   let locationFilterSelected = false;
   const locationFilters = ["state", "city", "highway"];
+  const typeFilters = ["travelStop", "countryStore"];
 
   for (const filter of locationFilters) {
     const arrayToFilter =
@@ -47,40 +48,30 @@ const filterLocations = (filters, locations) => {
           .includes(filter.toLowerCase())
       );
     }
+  } else {
+    for (const type of typeFilters) {
+      if (filters[type]) {
+        if (filteredLocations.length === 0) {
+          filteredLocations = locations.filter((location) =>
+            location.type
+              .replace(/\s/g, "")
+              .toLowerCase()
+              .includes(type.toLowerCase())
+          );
+        } else {
+          filteredLocations = filteredLocations.concat(
+            locations.filter((location) =>
+              location.type
+                .replace(/\s/g, "")
+                .toLowerCase()
+                .includes(type.toLowerCase())
+            )
+          );
+        }
+      }
+    }
   }
 
-  // for (const filter in filters) {
-  //   const arrayToFilter =
-  //     filteredLocations.length === 0 ? locations : filteredLocations;
-  //   if (typeof filters[filter] === "boolean") {
-  //     debugger;
-  //     if (filter === "travelStop") {
-  //       filteredLocations = filterType(
-  //         { type: filter, value: filters[filter] },
-  //         arrayToFilter
-  //       );
-  //     } else {
-  //       if (locationFilterSelected) {
-  //         filteredLocations = filteredLocations.concat(
-  //           filterType(
-  //             { type: filter, value: filters[filter] },
-  //             filteredLocations
-  //           )
-  //         );
-  //       } else {
-  //         filteredLocations = filteredLocations.concat(
-  //           filterType({ type: filter, value: filters[filter] }, locations)
-  //         );
-  //       }
-  //     }
-  //   }
-  //   if (typeof filters[filter] === "string" && filters[filter] !== "") {
-  //     locationFilterSelected = true;
-  //     filteredLocations = arrayToFilter.filter(
-  //       (location) => location[filter] === filters[filter]
-  //     );
-  //   }
-  // }
   return filteredLocations;
 };
 
